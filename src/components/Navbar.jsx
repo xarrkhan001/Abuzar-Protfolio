@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
-import BackgroundVideo from "../assets/AnimatedVideo.mp4";
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -12,7 +11,6 @@ const navItems = [
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -27,38 +25,15 @@ const Navbar = () => {
     setShowContactForm(false);
   };
 
-  const handleVideoLoad = () => {
-    setVideoLoaded(true);
-  };
-
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
     <>
-      <div className="relative w-full h-20 overflow-hidden bg-black">
-        {/* Background Video */}
-        <video
-          autoPlay
-          muted
-          loop
-          className={`absolute inset-0 object-cover w-full h-full z-[-1] transition-opacity duration-500 ${
-            videoLoaded ? "opacity-100" : "opacity-0"
-          }`}
-          onCanPlay={handleVideoLoad}
-        >
-          <source src={BackgroundVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* Black Overlay */}
-        {!videoLoaded && (
-          <div className="absolute inset-0 bg-black z-[-1]"></div>
-        )}
-
+      <div className="relative w-full overflow-hidden">
         {/* Navbar with Overlay */}
-        <nav className="relative bg-black bg-opacity-60 text-white shadow-md w-full">
+        <nav className="relative bg-black text-white shadow-md w-full">
           <style>
             {`
               @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -79,7 +54,7 @@ const Navbar = () => {
               }
 
               .text-gradient {
-                background: linear-gradient(to right, #ec4899, #f43f5e, #facc15);
+                background: linear-gradient(to right, #14b8a6, #06b6d4, #3b82f6);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 font-weight: bold;
@@ -88,8 +63,15 @@ const Navbar = () => {
 
               .logo {
                 font-family: 'Pacifico', cursive;
-                font-size: 2rem;
+                font-size: 1.5rem;
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+                background: linear-gradient(to right, #14b8a6, #06b6d4, #3b82f6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
               }
 
               .navbar-line {
@@ -97,9 +79,11 @@ const Navbar = () => {
                 bottom: 0;
                 left: 0;
                 width: 100%;
-                height: 1px;
-                background: linear-gradient(to right, #ec4899, #f43f5e, #facc15);
-                box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+                height: 2px; /* Thinner underline */
+                background: #4b5563; /* Light gray color */
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                margin: 0; /* Remove any margin */
+                padding: 0; /* Remove any padding */
               }
 
               .hamburger-menu {
@@ -109,7 +93,7 @@ const Navbar = () => {
               }
 
               .hamburger-menu:hover {
-                color: #facc15;
+                color: #3b82f6;
               }
 
               .mobile-menu {
@@ -118,10 +102,19 @@ const Navbar = () => {
                 background: rgba(0, 0, 0, 0.9);
                 box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
                 transition: transform 0.3s ease;
+                z-index: 40;
               }
 
               .mobile-menu ul li {
                 border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+              }
+
+              .mobile-menu .nav-item {
+                color: white; /* White color for items in the mobile menu */
+              }
+
+              .mobile-menu .nav-item:hover {
+                color: #06b6d4; /* Highlight color on hover for mobile menu items */
               }
 
               .contact-form-container {
@@ -147,6 +140,12 @@ const Navbar = () => {
                 transform: translateX(-100%);
                 animation: slideInLeft 0.5s ease-out forwards;
               }
+
+              @media (max-width: 768px) {
+                .logo {
+                  display: none; /* Hide logo on small screens */
+                }
+              }
             `}
           </style>
           <div className="container mx-auto flex items-center justify-between p-4 relative z-10">
@@ -159,7 +158,7 @@ const Navbar = () => {
             </button>
 
             {/* Logo as Link */}
-            <Link to="/" className="logo text-gradient">
+            <Link to="/" className="logo">
               ABUZAR
             </Link>
 
@@ -181,7 +180,9 @@ const Navbar = () => {
                 >
                   <Link
                     to={item.path}
-                    className="text-lg font-medium hover:text-gray-300 transition duration-300 block px-4 py-2"
+                    className={`nav-item text-lg font-medium hover:text-gray-300 transition duration-300 block px-4 py-2 ${
+                      isMobileMenuOpen ? "text-white" : ""
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -194,7 +195,7 @@ const Navbar = () => {
             <div className="hidden lg:block">
               <button
                 onClick={handleContactButtonClick}
-                className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition duration-300"
+                className="bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 text-white px-6 py-2 rounded-full shadow hover:bg-blue-700 transition duration-300"
               >
                 Connect with Me
               </button>
@@ -204,7 +205,7 @@ const Navbar = () => {
             <div className="lg:hidden">
               <button
                 onClick={handleContactButtonClick}
-                className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-4 py-1 rounded-full shadow hover:bg-blue-700 transition duration-300"
+                className="bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 text-white px-4 py-1 rounded-full shadow hover:bg-blue-700 transition duration-300"
               >
                 Connect
               </button>
@@ -218,7 +219,7 @@ const Navbar = () => {
       {/* Conditionally render ContactForm component with slide-in effect */}
       {showContactForm && (
         <div className="fixed inset-0 flex items-center justify-start bg-black bg-opacity-75 z-50">
-          <div className="relative bg-transparent w-full max-w-md h-full max-h-screen slide-in-left">
+          <div className="relative bg-white w-full max-w-md h-full max-h-screen slide-in-left">
             <ContactForm onClose={handleCloseContactForm} />
           </div>
         </div>

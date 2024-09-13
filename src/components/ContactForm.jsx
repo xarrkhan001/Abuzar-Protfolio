@@ -63,6 +63,7 @@ const ContactForm = ({ onClose }) => {
               onChange={handleChange}
               className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 ease-in-out"
               required
+              style={{ resize: "none", minHeight: "3rem" }} // Prevent resize
             />
           </div>
           <div className="mb-4 sm:mb-6">
@@ -80,6 +81,7 @@ const ContactForm = ({ onClose }) => {
               onChange={handleChange}
               className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 ease-in-out"
               required
+              style={{ resize: "none", minHeight: "3rem" }} // Prevent resize
             />
           </div>
           <div className="mb-4 sm:mb-6">
@@ -97,6 +99,7 @@ const ContactForm = ({ onClose }) => {
               onChange={handleChange}
               className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-300 ease-in-out"
               required
+              style={{ resize: "none" }} // Prevent resize
             ></textarea>
           </div>
           {success && (
@@ -118,7 +121,7 @@ const ContactForm = ({ onClose }) => {
             </button>
             <button
               type="submit"
-              className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-4 py-2 sm:px-5 sm:py-2 rounded-full shadow-lg hover:bg-blue-800 transition duration-200 ease-in-out"
+              className="bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 text-white px-4 py-2 sm:px-5 sm:py-2 rounded-full shadow-lg hover:bg-blue-800 transition duration-200 ease-in-out"
               disabled={sending}
             >
               {sending ? "Sending..." : "Send"}

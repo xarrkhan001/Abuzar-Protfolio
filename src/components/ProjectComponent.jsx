@@ -8,7 +8,6 @@ import ProjectImage3 from "../assets/img7.jpg"; // Replace with your actual imag
 import ProjectImage4 from "../assets/img7.jpg"; // Replace with your actual image path
 import ProjectImage5 from "../assets/img7.jpg"; // Replace with your actual image path
 import ProjectImage6 from "../assets/img7.jpg"; // Replace with your actual image path
-import BackgroundVideo from "../assets/AnimatedVideo.mp4"; // Import your background video
 
 const projects = [
   {
@@ -51,46 +50,12 @@ const projects = [
 
 const ProjectComponent = () => {
   const [activeProject, setActiveProject] = useState(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
 
   return (
-    <div className="relative w-full h-[693px] overflow-auto lg:overflow-hidden bg-black">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        preload="auto"
-        className={`absolute inset-0 object-cover w-full h-full transition-opacity duration-500 ${
-          videoLoaded ? "opacity-100" : "opacity-0"
-        }`}
-        onLoadedData={() => setVideoLoaded(true)}
-        onError={() => setVideoError(true)}
-      >
-        <source src={BackgroundVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Fallback Image */}
-      {videoError && (
-        <img
-          src={ProjectImage1} // Use an appropriate fallback image
-          alt="Fallback Image"
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-      )}
-
-      {/* Loading Indicator */}
-      {!videoLoaded && !videoError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-12 h-12 border-4 border-t-4 border-pink-500 border-solid rounded-full animate-spin"></div>
-        </div>
-      )}
-
+    <div className="relative w-full h-[693px] overflow-auto bg-black">
       {/* Overlay and Content Container */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 p-8 lg:p-16 flex flex-col items-center overflow-auto lg:overflow-hidden">
-        <h1 className="text-4xl font-extrabold mb-12 text-gray-100 text-center">
+      <div className="absolute inset-0 bg-black p-8 lg:p-16 flex flex-col items-center">
+        <h1 className="text-4xl font-extrabold mb-12 text-gray-200 text-center">
           My Latest Work
         </h1>
         <style>
@@ -117,7 +82,7 @@ const ProjectComponent = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className={`relative bg-gray-800 border-2 border-gray-700 rounded-md overflow-hidden shadow-lg transition-transform duration-300 transform hover:scale-105 ${
+                className={`relative bg-gray-800 border-2 border-gray-600 rounded-md overflow-hidden shadow-lg transition-transform duration-300 transform hover:scale-105 ${
                   activeProject === index ? "glow-effect" : ""
                 }`}
                 onMouseEnter={() => setActiveProject(index)}
@@ -130,10 +95,10 @@ const ProjectComponent = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                   <div className="text-center p-4">
-                    <h2 className="text-lg font-bold mb-2 text-white">
+                    <h2 className="text-lg font-bold mb-2 text-gray-200">
                       {project.title}
                     </h2>
-                    <p className="text-sm mb-4 text-gray-300">
+                    <p className="text-sm mb-4 text-gray-400">
                       {project.description}
                     </p>
                     <a

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import IMG from "../assets/Abu.jpg";
 import ResumeImage from "../assets/AbuCV Final_page-0001.jpg";
 import ContactForm from "./ContactForm";
-import BackgroundVideo from "../assets/AnimatedVideo.mp4";
 
 const HomeComponent = () => {
   const [showContactForm, setShowContactForm] = useState(false);
@@ -10,8 +9,6 @@ const HomeComponent = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [index, setIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
   const text = "I'm Abuzar";
   const typingSpeed = 75;
   const resetInterval = 6000;
@@ -56,51 +53,17 @@ const HomeComponent = () => {
   }, [index, text, isTyping, typingSpeed, resetTypingEffect]);
 
   return (
-    <div className="relative w-full h-[693px] overflow-hidden bg-black">
-      {/* Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        preload="auto"
-        className={`absolute inset-0 object-cover w-full h-full transition-opacity duration-500 ${
-          videoLoaded ? "opacity-100" : "opacity-0"
-        }`}
-        onLoadedData={() => setVideoLoaded(true)}
-        onError={() => setVideoError(true)}
-      >
-        <source src={BackgroundVideo} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
+    <div className="relative w-full h-[697px] overflow-hidden bg-black">
       {/* Fallback Image */}
-      {videoError && (
-        <img
-          src={IMG}
-          alt="Fallback Image"
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-      )}
+      <img
+        src={IMG}
+        alt="Fallback Image"
+        className="absolute inset-0 object-cover w-full h-full"
+      />
 
-      {/* Loading Indicator */}
-      {!videoLoaded && !videoError && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-12 h-12 border-4 border-t-4 border-pink-500 border-solid rounded-full animate-spin"></div>
-        </div>
-      )}
-
-      <div className="flex flex-col items-center justify-center relative w-full h-full bg-black bg-opacity-50 text-white p-4 md:p-8">
+      <div className="flex flex-col items-center justify-center relative w-full h-full bg-black text-white p-4 md:p-8">
         <style>
           {`
-            @keyframes rotate-border {
-              0% {
-                transform: rotate(0deg);
-              }
-              100% {
-                transform: rotate(360deg);
-              }
-            }
-
             @keyframes popOutAndBack {
               0% {
                 transform: scale(1);
@@ -122,7 +85,8 @@ const HomeComponent = () => {
               justify-content: center;
               border-radius: 50%;
               overflow: hidden;
-              border: 4px solid rgba(255, 255, 255, 0.7);
+              border: 4px solid #d1d5db; /* Thin professional gray border */
+              box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Slightly less intense shadow */
               box-sizing: border-box;
             }
 
@@ -142,7 +106,7 @@ const HomeComponent = () => {
               left: 0;
               width: 100%;
               height: 100%;
-              background: rgba(0, 0, 0, 0.5);
+              background: rgba(0, 0, 0, 0.4); /* Darker overlay for better contrast */
               z-index: 1;
             }
 
@@ -173,26 +137,26 @@ const HomeComponent = () => {
           <img src={IMG} alt="Abuzar" />
         </div>
         <div className="text-center mt-4">
-          <h1 className="text-4xl md:text-6xl font-bold bg-green-50 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gray-200">
             {displayedText}
           </h1>
-          <h2 className="text-2xl md:text-3xl font-medium mb-4">
+          <h2 className="text-2xl md:text-3xl font-medium mb-4 text-gray-300">
             Frontend Developer
           </h2>
-          <p className="text-base max-w-xs sm:max-w-sm md:max-w-xl mx-auto mb-6">
+          <p className="text-base max-w-xs sm:max-w-sm md:max-w-xl mx-auto mb-6 text-gray-400">
             Passionate Frontend Developer skilled in React and modern web
             technologies, creating efficient and dynamic web applications.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
             <button
               onClick={() => setShowContactForm(true)}
-              className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-4 py-2 sm:px-6 sm:py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300"
+              className="bg-gradient-to-r from-teal-500 via-teal-600 to-teal-700 text-white px-4 py-2 sm:px-6 sm:py-2 rounded-full shadow-md hover:bg-teal-800 transition duration-300"
             >
               Connect with Me
             </button>
             <button
               onClick={handleResumeClick}
-              className="bg-gradient-to-br from-black via-gray-800 to-black border text-white px-4 py-2 sm:px-6 sm:py-2 rounded-full shadow-md hover:bg-green-700 transition duration-300"
+              className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border text-white px-4 py-2 sm:px-6 sm:py-2 rounded-full shadow-md hover:bg-gray-600 transition duration-300"
             >
               My Resume
             </button>
@@ -200,7 +164,7 @@ const HomeComponent = () => {
         </div>
         {showContactForm && (
           <div className="fixed inset-0 flex items-center justify-start bg-black bg-opacity-75 z-50">
-            <div className="relative bg-transparent w-full max-w-md h-full max-h-screen slide-in-left">
+            <div className="relative bg-white w-full max-w-md h-full max-h-screen slide-in-left">
               <ContactForm onClose={handleCloseContactForm} />
             </div>
           </div>
@@ -210,7 +174,7 @@ const HomeComponent = () => {
             <div className="relative bg-white p-4 rounded-lg shadow-lg max-w-lg w-full slide-in-left">
               <button
                 onClick={handleCloseResumeModal}
-                className="absolute top-2 right-2 text-black text-xl font-bold"
+                className="absolute top-2 right-2 text-gray-800 text-xl font-bold"
               >
                 &times;
               </button>
@@ -218,7 +182,7 @@ const HomeComponent = () => {
               <a
                 href={ResumeImage}
                 download="Abuzar_Resume.jpg"
-                className="absolute bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-blue-700 transition duration-300 flex items-center"
+                className="absolute bottom-4 right-4 bg-teal-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-teal-800 transition duration-300 flex items-center"
               >
                 <svg
                   className="w-5 h-5 mr-2"
