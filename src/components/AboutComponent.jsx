@@ -1,5 +1,5 @@
 import React from "react";
-import MyImage from "../assets/img7.jpg";
+import MyImage from "../assets/Abu.jpg";
 import { FaHtml5, FaCss3Alt, FaReact } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -10,13 +10,16 @@ import {
 
 const AboutComponent = () => {
   return (
-    <div className="relative w-full h-[693px] bg-black">
-      {/* Background Image */}
-      <img
-        src={MyImage}
-        alt="Background Image"
-        className="absolute inset-0 object-cover w-full h-full opacity-50"
-      />
+    <div className="relative w-full h-[693px] bg-black overflow-hidden">
+      {/* Background Image with Blackish Overlay */}
+      <div className="relative w-full h-full">
+        <img
+          src={MyImage}
+          alt="Background Image"
+          className="absolute inset-0 object-cover w-full h-full"
+        />
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+      </div>
 
       {/* Overlay and Content Container */}
       <div className="absolute inset-0 bg-black flex flex-col lg:flex-row items-center lg:items-start justify-center p-4 md:p-8 lg:p-16 overflow-auto">

@@ -2,48 +2,42 @@ import React, { useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 // Import project images
-import ProjectImage1 from "../assets/img7.jpg"; // Replace with your actual image path
-import ProjectImage2 from "../assets/img7.jpg"; // Replace with your actual image path
-import ProjectImage3 from "../assets/img7.jpg"; // Replace with your actual image path
-import ProjectImage4 from "../assets/img7.jpg"; // Replace with your actual image path
-import ProjectImage5 from "../assets/img7.jpg"; // Replace with your actual image path
-import ProjectImage6 from "../assets/img7.jpg"; // Replace with your actual image path
+import ProjectImage1 from "../assets/Eccomerce01.jpg"; // Replace with your actual image path
+import ProjectImage2 from "../assets/Eccomerce02.jpg"; // Replace with your actual image path
+import ProjectImage3 from "../assets/Portfolio01.jpg"; // Replace with your actual image path
+import ProjectImage4 from "../assets/FYP01.jpg"; // Replace with your actual image path
+import ProjectImage5 from "../assets/Fruits01.jpg"; // Replace with your actual image path
+import ProjectImage6 from "../assets/Disney01.jpg"; // Replace with your actual image path
 
 const projects = [
   {
-    title: "IntraChat Of Islamia College University",
-    description: "A brief description of Project 1.",
-    link: "https://fyp-intra-chat.vercel.app/",
+    title: "E-ccomerce",
+    link: "https://eccomerce-01-abuzar.vercel.app/",
     image: ProjectImage1,
   },
   {
-    title: "Project 2",
-    description: "A brief description of Project 2.",
-    link: "https://fyp-intra-chat.vercel.app/",
+    title: "E-ccomerce Stylio",
+    link: "https://eccomerce-02-abuzar.vercel.app/",
     image: ProjectImage2,
   },
   {
-    title: "Project 3",
-    description: "A brief description of Project 3.",
-    link: "https://fyp-intra-chat.vercel.app/",
+    title: "Portfolio",
+    link: "https://maa-old-portfolio.vercel.app/",
     image: ProjectImage3,
   },
   {
-    title: "Project 4",
-    description: "A brief description of Project 4.",
-    link: "https://fyp-intra-chat.vercel.app/",
+    title: "IntraChat Of Islamia College",
+    link: "https://fyp-intra-chat-3gdl.vercel.app/",
     image: ProjectImage4,
   },
   {
-    title: "Project 5",
-    description: "A brief description of Project 5.",
-    link: "https://fyp-intra-chat.vercel.app/",
+    title: "Fruits",
+    link: "https://grocery-store-react-one.vercel.app/",
     image: ProjectImage5,
   },
   {
-    title: "Project 6",
-    description: "A brief description of Project 6.",
-    link: "https://fyp-intra-chat.vercel.app/",
+    title: "Disney +",
+    link: "https://disney-abuzar.vercel.app/",
     image: ProjectImage6,
   },
 ];
