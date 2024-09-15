@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import IMG from "../assets/Abu.jpg";
-import ResumeImage from "../assets/AbuCV Final_page-0001.jpg";
+import ResumeImage from "../assets/cvcopy.jpg";
 import ContactForm from "./ContactForm";
 
 const HomeComponent = () => {
